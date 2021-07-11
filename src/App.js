@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { GoButton } from "./components/button.js";
+import { TempCard } from "./components/card.js";
+import { SearchBar } from "./components/search.js";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { fetchWeatherDataByCoordinates } from "./helper/fetchWeatherData.js";
+import { getLocation } from "./helper/geoLocation";
+import { theme } from "./theme/theme.js";
+import { Footer } from "./components/footer.js";
 
 function App() {
+  //let lat,
+  //long = getLocation(fetchWeatherDataByCoordinates);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div >
+        <SearchBar />
+        <GoButton />
+        <TempCard />
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 

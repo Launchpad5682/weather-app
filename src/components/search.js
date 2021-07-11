@@ -1,6 +1,8 @@
 import React from "react";
-import { Input } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
 export function SearchBar(props) {
-  return <Input color="primary"></Input>;
+  return (
+    <TextField color="primary" variant="outlined" label="Enter your City" />
+  );
 }

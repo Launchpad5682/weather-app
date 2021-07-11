@@ -1,17 +1,16 @@
-export function getLocation() {
+export function getLocation(callback) {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition, callback);
   } else {
     console.log("No Position");
   }
 }
 
-function showPosition(position) {
+function showPosition(position, callback) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
 
   console.log("Latitude " + lat);
   console.log("Longitude " + long);
-
-  return { lat, long };
+  callback(lat, long);
 }
