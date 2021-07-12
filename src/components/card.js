@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function TempCard(props) {
+export function TempCard({ temp }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -35,10 +36,10 @@ export function TempCard(props) {
           color="textSecondary"
           gutterBottom
         >
-          27&#8451;
+          {temp.temp}&#8451;
         </Typography>
         <Typography variant="h5" component="h2">
-          City Name
+          {temp.city}, {temp.country}
         </Typography>
       </CardContent>
     </Card>
