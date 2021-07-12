@@ -3,11 +3,21 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { TempProvider } from "./context/tempContext.js";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "./theme/theme.js";
+import { CoordinateProvider } from "./context/coordinateContext";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <TempProvider>
+      <CoordinateProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </CoordinateProvider>
+    </TempProvider>
+  </ThemeProvider>,
   document.getElementById("root")
 );
 
