@@ -12,7 +12,7 @@ export const TempProvider = (props) => {
   });
 
   return (
-    <TempContext.Provider tempData={tempData}>
+    <TempContext.Provider value={{ tempData, setTempData }}>
       {props.children}
     </TempContext.Provider>
   );
