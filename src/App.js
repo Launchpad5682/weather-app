@@ -30,7 +30,7 @@ function App() {
     enableHighAccuracy: true,
   };
 
-  function success(pos) {
+  async function success(pos) {
     var crd = pos.coords;
 
     console.log("Your current position is:");
@@ -39,7 +39,15 @@ function App() {
     console.log(`More or less ${crd.accuracy} meters.`);
 
     setCoordinates({ latitude: crd.latitude, longitude: crd.longitude });
-    //fetchWeatherDataByCoordinates(coordinates.latitude, coordinates.longitude);
+    const data = await fetchWeatherDataByCoordinates(
+      coordinates.latitude,
+      coordinates.longitude
+    );
+
+    setTempData(data);
+
+    //console.log("test at success " + data);
+
     //return { latitude: crd.latitude, longitude: crd.longitude }
   }
 
@@ -51,6 +59,8 @@ function App() {
     navigator.geolocation.getCurrentPosition(success, error, options);
   };
 
+  // re renders on the change, we can add objects when they're changed
+  // then the useEffect() will re-run again
   useEffect(() => {
     const obj = getGeoLocation();
     console.log(obj);

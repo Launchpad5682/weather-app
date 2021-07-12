@@ -1,32 +1,22 @@
 import React, { useState } from "react";
 import { Button, FormControl, makeStyles, TextField } from "@material-ui/core";
+import {
+  fetchWeatherDataByCity,
+  fetchWeatherDataByCoordinates,
+} from "../helper/fetchWeatherData";
 
 const useStyles = makeStyles((theme) => ({}));
 
 export function TempForm({ temp, setTemp }) {
-  const endpoint = "https://api.openweathermap.org/data/2.5/weather?";
-  const access_key = "&appid=ffab998f7678dc6ab184b50e7a1d5d18";
-
   const [city, setCity] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(city);
-    let url = endpoint + "q=" + city + access_key + "&units=metric";
-    console.log(url);
-    console.log(temp);
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.main.temp, data.name, data.sys.country);
-        setTemp({
-          temp: data.main.temp,
-          city: data.name,
-          country: data.sys.country,
-        });
-        setCity("");
-      })
-      .catch((err) => console.log(err));
+    let data = await fetchWeatherDataByCity(city);
+    console.log(data);
+    setTemp(data);
+    setCity("");
   };
 
   return (

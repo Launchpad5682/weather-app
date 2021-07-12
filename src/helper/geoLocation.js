@@ -1,16 +1,16 @@
-export function getLocation(callback) {
+import { fetchWeatherDataByCoordinates } from "./fetchWeatherData";
+
+// need to write a custom hook for the same
+export function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, callback);
-  } else {
-    console.log("No Position");
+    navigator.geolocation
+      .getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        return { latitude, longitude }
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   }
 }
-
-function showPosition(position, callback) {
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
-
-  console.log("Latitude " + lat);
-  console.log("Longitude " + long);
-  callback(lat, long);
-}
+// return {lat, long};
