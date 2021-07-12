@@ -22,7 +22,10 @@ function App() {
     city: null,
     country: null,
   });
-  const [coordinates, setCoordinates] = useState();
+  const [coordinates, setCoordinates] = useState({
+    latitude: null,
+    longitude: null,
+  });
   // const { latitude, longitude } = getLocation();
   // console.log(latitude, longitude);
 
@@ -39,16 +42,10 @@ function App() {
     console.log(`More or less ${crd.accuracy} meters.`);
 
     setCoordinates({ latitude: crd.latitude, longitude: crd.longitude });
-    const data = await fetchWeatherDataByCoordinates(
-      coordinates.latitude,
-      coordinates.longitude
+
+    setTempData(
+      await fetchWeatherDataByCoordinates(crd.latitude, crd.longitude)
     );
-
-    setTempData(data);
-
-    //console.log("test at success " + data);
-
-    //return { latitude: crd.latitude, longitude: crd.longitude }
   }
 
   function error(err) {
