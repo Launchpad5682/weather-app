@@ -1,5 +1,4 @@
 import { useState, createContext } from "react";
-import { TempContext } from "./tempContext";
 
 export const CoordinateContext = createContext();
 

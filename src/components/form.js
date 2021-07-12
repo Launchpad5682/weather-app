@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, FormControl, makeStyles, TextField } from "@material-ui/core";
-import {
-  fetchWeatherDataByCity,
-  fetchWeatherDataByCoordinates,
-} from "../helper/fetchWeatherData";
+import { fetchWeatherDataByCity } from "../helper/fetchWeatherData";
+import { TempContext } from "../context/tempContext";
 
 const useStyles = makeStyles((theme) => ({}));
 
-export function TempForm({ temp, setTemp }) {
+export function TempForm() {
+  const { tempData, setTempData } = useContext(TempContext);
   const [city, setCity] = useState("");
 
   const handleSubmit = async (event) => {
@@ -15,7 +14,7 @@ export function TempForm({ temp, setTemp }) {
     console.log(city);
     let data = await fetchWeatherDataByCity(city);
     console.log(data);
-    setTemp(data);
+    setTempData(data);
     setCity("");
   };
 

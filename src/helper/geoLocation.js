@@ -6,11 +6,10 @@ export function getLocation() {
     navigator.geolocation
       .getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
-        return { latitude, longitude }
+        return { latitude, longitude };
       })
       .catch((err) => {
         console.error(err.message);
       });
   }
 }
-// return {lat, long};

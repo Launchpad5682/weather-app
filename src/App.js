@@ -1,11 +1,11 @@
 import { TempCard } from "./components/card.js";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { theme, useStyles } from "./theme/theme.js";
+import { useStyles } from "./theme/theme.js";
 import { Footer } from "./components/footer.js";
 import { TempForm } from "./components/form.js";
-import { useState, useEffect } from "react";
-import { getLocation } from "./helper/geoLocation.js";
+import { useEffect, useContext } from "react";
 import { fetchWeatherDataByCoordinates } from "./helper/fetchWeatherData.js";
+import { TempContext } from "./context/tempContext.js";
+import { CoordinateContext } from "./context/coordinateContext.js";
 
 /*
 Creating the state in the parent component and passing 
@@ -17,15 +17,18 @@ function App() {
   //let lat,
   //long = getLocation(fetchWeatherDataByCoordinates);
   //const [tempData, setTempData] = useContext(TempContext);
-  const [tempData, setTempData] = useState({
-    temp: null,
-    city: null,
-    country: null,
-  });
-  const [coordinates, setCoordinates] = useState({
-    latitude: null,
-    longitude: null,
-  });
+  // const [tempData, setTempData] = useState({
+  //   temp: null,
+  //   city: null,
+  //   country: null,
+  // });
+  const { tempData, setTempData } = useContext(TempContext);
+  // const [coordinates, setCoordinates] = useState({
+  //   latitude: null,
+  //   longitude: null,
+  // });
+
+  const { coordinates, setCoordinates } = useContext(CoordinateContext);
   // const { latitude, longitude } = getLocation();
   // console.log(latitude, longitude);
 
@@ -61,7 +64,6 @@ function App() {
   useEffect(() => {
     const obj = getGeoLocation();
     console.log(obj);
-    // setCoordinates({})
   }, []);
 
   if (coordinates) {
@@ -69,13 +71,13 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <div className={classes.root}>
         <TempForm temp={tempData} setTemp={setTempData} />
         <TempCard temp={tempData} />
       </div>
       <Footer className={classes.footer} />
-    </ThemeProvider>
+    </div>
   );
 }
 
