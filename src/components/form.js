@@ -3,7 +3,15 @@ import { Button, FormControl, makeStyles, TextField } from "@material-ui/core";
 import { fetchWeatherDataByCity } from "../helper/fetchWeatherData";
 import { TempContext } from "../context/tempContext";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles({
+  root: {
+    //   background: "yellow",
+    //   color: "green",
+    width: "200px",
+    margin: "auto",
+    padding: "10px 0",
+  },
+});
 
 export function TempForm() {
   const { tempData, setTempData } = useContext(TempContext);
@@ -17,10 +25,10 @@ export function TempForm() {
     setTempData(data);
     setCity("");
   };
-
+  const classes = useStyles();
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl className={useStyles}>
+    <form onSubmit={handleSubmit} className={classes.root}>
+      <FormControl>
         <TextField
           color="primary"
           variant="outlined"
@@ -31,7 +39,7 @@ export function TempForm() {
             console.log(e.target.value);
           }}
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" color="secondary" type="submit">
           Go Temp
         </Button>
       </FormControl>

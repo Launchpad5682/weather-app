@@ -9,6 +9,7 @@ import { theme } from "./theme/theme.js";
 import { CoordinateProvider } from "./context/coordinateContext";
 
 ReactDOM.render(
+  // theme={theme}
   <ThemeProvider theme={theme}>
     <TempProvider>
       <CoordinateProvider>

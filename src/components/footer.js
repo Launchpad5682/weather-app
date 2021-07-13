@@ -1,5 +1,10 @@
 import React from "react";
+import { Box } from "@material-ui/core";
 
 export function Footer({ footer }) {
-  return <div className={footer}>Hello, I'm Footer</div>;
+  return (
+    <Box component="footer" bgcolor="red" color="yellow" height="10vh">
+      Hello, I'm Footer
+    </Box>
+  );
 }

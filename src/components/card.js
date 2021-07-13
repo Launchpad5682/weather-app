@@ -1,33 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
+import { TempContext } from "../context/tempContext";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
-    width: 200,
-    height: 300,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 10px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 34,
-  },
-  pos: {
-    marginBottom: 120,
+    background: "yellow",
+    color: "green",
+    height: "300px",
+    width: "200px",
+    margin: "100px auto",
   },
 });
 
-export function TempCard({ temp }) {
+export function TempCard() {
+  const { tempData, setTempData } = useContext(TempContext);
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -36,10 +26,10 @@ export function TempCard({ temp }) {
           color="textSecondary"
           gutterBottom
         >
-          {temp.temp}&#8451;
+          {tempData.temp}&#8451;
         </Typography>
         <Typography variant="h5" component="h2">
-          {temp.city}, {temp.country}
+          {tempData.city}, {tempData.country}
         </Typography>
       </CardContent>
     </Card>

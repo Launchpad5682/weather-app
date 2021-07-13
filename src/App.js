@@ -1,32 +1,28 @@
 import { TempCard } from "./components/card.js";
-import { useStyles } from "./theme/theme.js";
-import { Footer } from "./components/footer.js";
 import { TempForm } from "./components/form.js";
 import { useEffect, useContext } from "react";
 import { fetchWeatherDataByCoordinates } from "./helper/fetchWeatherData.js";
 import { TempContext } from "./context/tempContext.js";
 import { CoordinateContext } from "./context/coordinateContext.js";
+import { Box, makeStyles } from "@material-ui/core";
+import { theme } from "./theme/theme.js";
 
 /*
 Creating the state in the parent component and passing 
 it down the build tree
 */
 
-function App() {
-  const classes = useStyles();
-  //let lat,
-  //long = getLocation(fetchWeatherDataByCoordinates);
-  //const [tempData, setTempData] = useContext(TempContext);
-  // const [tempData, setTempData] = useState({
-  //   temp: null,
-  //   city: null,
-  //   country: null,
-  // });
+const useStyles = makeStyles({
+  root: {
+    background: "red",
+    color: "green",
+    height: "100vh",
+  },
+});
+
+function App(props) {
+  const classes = useStyles(props);
   const { tempData, setTempData } = useContext(TempContext);
-  // const [coordinates, setCoordinates] = useState({
-  //   latitude: null,
-  //   longitude: null,
-  // });
 
   const { coordinates, setCoordinates } = useContext(CoordinateContext);
   // const { latitude, longitude } = getLocation();
@@ -69,15 +65,12 @@ function App() {
   if (coordinates) {
     console.log(coordinates);
   }
-
+  console.log("This is props " + props.theme);
   return (
-    <div>
-      <div className={classes.root}>
-        <TempForm temp={tempData} setTemp={setTempData} />
-        <TempCard temp={tempData} />
-      </div>
-      <Footer className={classes.footer} />
-    </div>
+    <Box className={classes.root}>
+      <TempForm />
+      <TempCard />
+    </Box>
   );
 }
 
