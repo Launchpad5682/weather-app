@@ -12,13 +12,13 @@ Creating the state in the parent component and passing
 it down the build tree
 */
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    background: "red",
+    background: theme.palette.primary.main,
     color: "green",
     height: "100vh",
   },
-});
+}));
 
 function App(props) {
   const classes = useStyles(props);
