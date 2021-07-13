@@ -32,7 +32,8 @@ export function TempForm() {
         <TextField
           color="primary"
           variant="outlined"
-          label="Enter your City"
+          /*label="Enter your City"*/
+          placeholder="Enter your City"
           value={city}
           onChange={(e) => {
             setCity(e.target.value);
