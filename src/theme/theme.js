@@ -13,16 +13,15 @@ export const theme = createTheme({
       secondaryText: "#757575",
       dividerColor: "#BDBDBD",
     },
-    // secondary: {
-    //   main: green[500],
-    // },
+    secondary: {
+      main: "#FF5722",
+      accent: "#FFC107",
+      darkPrimary: "#E64A19",
+      lightPrimary: "#FFCCBC",
+      textColor: "#FFFFFF",
+      primaryText: "#212121",
+      secondaryText: "#757575",
+      dividerColor: "#BDBDBD",
+    },
   },
 });
-
-export const useStyles = makeStyles((theme) => ({
-  root: {
-    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-    padding: "100px 0",
-    height: "100%",
-  },
-}));
