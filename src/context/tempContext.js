@@ -6,6 +6,7 @@ export const TempContext = createContext();
 
 export const TempProvider = (props) => {
   const [tempData, setTempData] = useState({
+    loading: true,
     temp: null,
     city: null,
     country: null,
