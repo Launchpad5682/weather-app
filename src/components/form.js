@@ -1,17 +1,29 @@
 import React, { useState, useContext } from "react";
-import { Button, FormControl, makeStyles, TextField } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  FormControl,
+  makeStyles,
+  TextField,
+} from "@material-ui/core";
 import { fetchWeatherDataByCity } from "../helper/fetchWeatherData";
 import { TempContext } from "../context/tempContext";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    //   background: "yellow",
+    //background: "yellow",
     //   color: "green",
     width: "200px",
     margin: "auto",
     padding: "10px 0",
   },
-});
+  search: {
+    // margin: "10px 0",
+    // padding: "0 2px",
+    margin: "auto",
+    marginBottom: 10,
+  },
+}));
 
 export function TempForm() {
   const { tempData, setTempData } = useContext(TempContext);
@@ -32,13 +44,14 @@ export function TempForm() {
         <TextField
           color="primary"
           variant="outlined"
-          /*label="Enter your City"*/
-          placeholder="Enter your City"
+          placeholder="Search a city"
           value={city}
           onChange={(e) => {
             setCity(e.target.value);
             console.log(e.target.value);
           }}
+          fullWidth
+          className={classes.search}
         />
         <Button variant="contained" color="secondary" type="submit">
           Go Temp
