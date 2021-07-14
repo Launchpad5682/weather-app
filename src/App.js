@@ -14,7 +14,6 @@ it down the build tree
 const useStyles = makeStyles((theme) => ({
   root: {
     background: `linear-gradient(45deg, ${theme.palette.primary.accent} 30%, ${theme.palette.primary.main} 90%)`,
-    color: "green",
     height: "100vh",
   },
 }));
