@@ -5,7 +5,6 @@ import { fetchWeatherDataByCoordinates } from "./helper/fetchWeatherData.js";
 import { TempContext } from "./context/tempContext.js";
 import { CoordinateContext } from "./context/coordinateContext.js";
 import { Box, makeStyles } from "@material-ui/core";
-import { theme } from "./theme/theme.js";
 
 /*
 Creating the state in the parent component and passing 
@@ -14,7 +13,7 @@ it down the build tree
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: theme.palette.primary.main,
+    background: `linear-gradient(45deg, ${theme.palette.primary.accent} 30%, ${theme.palette.primary.main} 90%)`,
     color: "green",
     height: "100vh",
   },
