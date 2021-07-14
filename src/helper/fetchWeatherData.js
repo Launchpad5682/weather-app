@@ -13,11 +13,10 @@ const fetchData = async (url) => {
     const response = await axios.get(url);
 
     const data = response.data;
-
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
-    console.error(err.message);
+    // console.error(err.message);
     return null;
   }
 };
@@ -36,6 +35,10 @@ export async function fetchWeatherDataByCity(city) {
     temp: Math.round(data.main.temp),
     city: data.name,
     country: data.sys.country,
+    icon: data.weather[0].icon,
+    weather: data.weather[0].main,
+    feels_like: Math.round(data.main.feels_like),
+    humidity: data.main.humidity,
   };
 }
 
@@ -52,6 +55,10 @@ export async function fetchWeatherDataByCoordinates(lat, long) {
     temp: Math.round(data.main.temp),
     city: data.name,
     country: data.sys.country,
+    icon: data.weather[0].icon,
+    weather: data.weather[0].main,
+    feels_like: Math.round(data.main.feels_like),
+    humidity: data.main.humidity,
   };
 }
 
