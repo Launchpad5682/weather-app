@@ -5,7 +5,6 @@
 // api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
 
 import axios from "axios";
-
 let endpoint = "https://api.openweathermap.org/data/2.5/weather?";
 let access_key = "&appid=ffab998f7678dc6ab184b50e7a1d5d18";
 
@@ -19,6 +18,7 @@ const fetchData = async (url) => {
     return data;
   } catch (err) {
     console.error(err.message);
+    return null;
   }
 };
 
@@ -27,9 +27,13 @@ export async function fetchWeatherDataByCity(city) {
   console.log(url);
 
   const data = await fetchData(url);
-
+  if (data === null) {
+    return {
+      loading: true,
+    };
+  }
   return {
-    temp: data.main.temp,
+    temp: Math.round(data.main.temp),
     city: data.name,
     country: data.sys.country,
   };
@@ -45,7 +49,7 @@ export async function fetchWeatherDataByCoordinates(lat, long) {
   const data = await fetchData(url);
 
   return {
-    temp: data.main.temp,
+    temp: Math.round(data.main.temp),
     city: data.name,
     country: data.sys.country,
   };
